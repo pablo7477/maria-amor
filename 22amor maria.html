@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Para María Fernanda ❤️</title>
+<style>
+  html,body{
+    height:100%;
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(160deg, #ffb347, #ffcc33, #ffc7a0);
+    overflow:hidden;
+    color: white;
+  }
+  .stage {
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:5;
+    text-align:center;
+    padding:2rem;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 64px);
+    margin:0;
+    color: #fff5e6;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.3);
+  }
+  h2 {
+    margin-top:.6rem;
+    font-size: clamp(14px, 2.2vw, 22px);
+    color: #fff5e6;
+    font-weight:500;
+  }
+  .love-words {
+    position:absolute;
+    inset: 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 1rem;
+    z-index:6;
+    pointer-events:none;
+    padding: 2rem;
+  }
+  .love-words .word {
+    font-size: 1rem;
+    color: #fffaf0;
+    animation: floaty 6s ease-in-out infinite;
+    opacity: 0.8;
+  }
+  .love-words .word:nth-child(even){ animation-duration:7s; }
+  .love-words .word:nth-child(3n){ animation-duration:5.5s; }
+  @keyframes floaty {
+    0% { transform: translateY(0); opacity:.8; }
+    50% { transform: translateY(-12px); opacity:1; }
+    100% { transform: translateY(0); opacity:.8; }
+  }
+  .fall {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    z-index:2;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .fall .item {
+    position:absolute;
+    top:-10vh;
+    left:0;
+    font-size: 24px;
+    opacity:0;
+    text-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  .s{ font-size:18px; }
+  .m{ font-size:28px; }
+  .l{ font-size:40px; }
+  @keyframes fall {
+    0% { transform: translateY(-12vh) rotate(0deg); opacity:0; }
+    10% { opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="fall" id="fallArea"></div>
+
+<div class="stage">
+  <h1>Para María Fernanda ❤️</h1>
+  <h2>De Pablo — mi amor eterno</h2>
+
+  <div class="love-words" id="words">
+    <div class="word">Bella</div>
+    <div class="word">Guapa</div>
+    <div class="word">Linda</div>
+    <div class="word">Un ángel</div>
+    <div class="word">Eternidad</div>
+    <div class="word">Preciosa</div>
+    <div class="word">Mi sol</div>
+    <div class="word">Mi cielo</div>
+    <div class="word">Mi reina</div>
+    <div class="word">Mi amor eterno</div>
+    <div class="word">Hermosa</div>
+    <div class="word">Dulzura</div>
+    <div class="word">Mi tesoro</div>
+    <div class="word">Mi vida</div>
+    <div class="word">Mi corazón</div>
+  </div>
+
+  <p style="margin-top:20px; color:#fff5e6; font-size:1rem; max-width:500px;">
+    María, eres la luz de mis días, la calma en mis noches, y la sonrisa que ilumina mi vida. 
+    Te amo más de lo que las palabras pueden decir.
+  </p>
+</div>
+
+<script>
+  const pool = ["🌸","🌺","💐","💕","💋","🐰","🐇","⭐","✨","❤️","444","💞","🌟","🥰"];
+  const fallArea = document.getElementById('fallArea');
+  const maxItems = 60;
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function randInt(min,max){ return Math.floor(rand(min,max+1)); }
+
+  for(let i=0;i<maxItems;i++){
+    const el = document.createElement('div');
+    el.className = 'item';
+    const symbol = pool[randInt(0,pool.length-1)];
+    el.textContent = symbol;
+    const size = Math.random()<0.33 ? 's' : (Math.random()<0.6 ? 'm' : 'l');
+    el.classList.add(size);
+    el.style.left = rand(2, 96) + '%';
+    const duration = rand(6, 14);
+    const delay = rand(0, 10);
+    el.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+    fallArea.appendChild(el);
+  }
+</script>
+
+</body>
+</html>
